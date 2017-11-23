@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+const Rock=preload(\"res://enemies/rock/rock.tscn\")
+const Bat=preload(\"res://enemies/bat/bat.tscn\")
+const Bonus=preload(\"res://bonus/bonus.tscn\")
+
+export(NodePath) var player=null
+export var spawn_distance_min=400
+export var spawn_distance_max=1000
+#node resolution of NodePath player
+var _player_node=null
+
+onready var screenSize=get_viewport_rect().size
+
+func _ready():
+	randomize()
+	if(player!=null):
+		_player_node=get_node(player)
+		set_fixed_process(true)
+
+func _fixed_process(delta):
+	var player_pos=_player_node.get_pos();
+	var pos=get_pos();
+	#Viewport follow player pos
+	#when spawn node is close to enter on screen (player_pos.x+screenSize.width)
+	#generate bonus/enemy node
+	while(player_pos.x+screenSize.width>pos.x):
+		var rand_val=randf()
+		var new_node=null
+		if(rand_val>0.2):
+			if(rand_val<0.5):
+				new_node=Bonus.instance()
+			elif(rand_val<0.8):
+				new_node=Rock.instance()
+			else:
+				new_node=Bat.instance()
+		if(new_node!=null):
+			new_node.set_pos(pos)
+			new_node.randomize_settings()
+			get_parent().add_child(new_node)
+		#move spawn node on random distance
+		pos.x+=rand_range(spawn_distance_min,spawn_distance_max)
+		set_pos(pos)
+"
+
+[node name="spawn" type="Node2D"]
+
+script/script = SubResource( 1 )
+player = null
+spawn_distance_min = 400
+spawn_distance_max = 1000
+
+

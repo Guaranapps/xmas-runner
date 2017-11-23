@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://stage/stage.gd" type="Script" id=1]
+[ext_resource path="res://stage/background/parallax.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://spawn/spawn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/gameover_dialog.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GUI/ready_dialog.tscn" type="PackedScene" id=7]
+
+[node name="stage" type="Node2D"]
+
+script/script = ExtResource( 1 )
+speed_inc = 10
+
+[node name="parallax" parent="." instance=ExtResource( 2 )]
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 188.375, 502.105 )
+z/z = 1
+jump_strength = 1000
+gravity_strength = 3000
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+transform/pos = Vector2( 196, -214.105 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.0
+drag_margin/top = 1.0
+drag_margin/right = 0.0
+drag_margin/bottom = 1.0
+
+[node name="spawn" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 2000, 500 )
+player = NodePath("../player")
+spawn_distance_min = 350
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="gameover_dialog" parent="HUD" instance=ExtResource( 6 )]
+
+visibility/visible = false
+margin/left = 329.0
+margin/top = 267.0
+margin/right = -304.0
+margin/bottom = -272.0
+
+[node name="ready" parent="HUD" instance=ExtResource( 7 )]
+
+[node name="score_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="on_dead" from="player" to="." method="_on_player_on_dead"]
+
+[connection signal="on_start" from="HUD/ready" to="." method="_on_ready_on_start"]
+
+[connection signal="timeout" from="score_timer" to="." method="_on_score_timer_timeout"]
+
+

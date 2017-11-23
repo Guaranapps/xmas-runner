@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://stage/background/parallax.gd" type="Script" id=1]
+[ext_resource path="res://stage/background/background.png" type="Texture" id=2]
+[ext_resource path="res://stage/background/Tree_1.png" type="Texture" id=3]
+[ext_resource path="res://stage/background/Tree_2.png" type="Texture" id=4]
+[ext_resource path="res://stage/background/Igloo.png" type="Texture" id=5]
+[ext_resource path="res://stage/background/SnowMan.png" type="Texture" id=6]
+[ext_resource path="res://stage/background/Sign_2.png" type="Texture" id=7]
+[ext_resource path="res://stage/background/ground.png" type="Texture" id=8]
+
+[node name="parallax" type="ParallaxBackground"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+script/script = ExtResource( 1 )
+ground_y = 500
+
+[node name="layer_background" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1160, 0 )
+
+[node name="background" type="Sprite" parent="layer_background"]
+
+texture = ExtResource( 2 )
+centered = false
+
+[node name="layer_middle2" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.3, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 2048, 0 )
+
+[node name="tree" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 163.346, 407.426 )
+transform/scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+
+[node name="tree1" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 1427.09, 380.027 )
+texture = ExtResource( 3 )
+
+[node name="tree2" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 757.653, 432.709 )
+transform/scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
+
+[node name="tree3" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 918.617, 425.859 )
+transform/scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 4 )
+
+[node name="tree6" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 606.962, 432.709 )
+transform/scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 4 )
+
+[node name="tree5" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 415.174, 425.859 )
+transform/scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 4 )
+
+[node name="tree4" type="Sprite" parent="layer_middle2"]
+
+transform/pos = Vector2( 1148.08, 429.284 )
+transform/scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 4 )
+
+[node name="layer_middle1" type="ParallaxLayer" parent="."]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.8, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1500, 0 )
+
+[node name="igloo" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 527.797, 455.221 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="tree2" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 934.524, 418.333 )
+texture = ExtResource( 4 )
+
+[node name="snowman" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 727.944, 465.474 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="snowman1" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 1360.92, 458.625 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="tree1" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 185.29, 386.179 )
+texture = ExtResource( 3 )
+
+[node name="tree3" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 1140.81, 393.029 )
+texture = ExtResource( 3 )
+
+[node name="sign" type="Sprite" parent="layer_middle1"]
+
+transform/pos = Vector2( 1463.31, 465.43 )
+texture = ExtResource( 7 )
+
+[node name="layer_foreground" type="ParallaxLayer" parent="."]
+
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 2048, 0 )
+
+[node name="ground" type="Sprite" parent="layer_foreground"]
+
+transform/pos = Vector2( 0, 500 )
+texture = ExtResource( 8 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 2048, 128 )
+
+
